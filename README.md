@@ -2,7 +2,8 @@ al per-capita energy consumption across countries and years.
 # Visualizing Power Consumption Trends with WPF Surface Charts
 
 ## Syncfusion Surface Chart Overview
-A [Surface Chart](https://help.syncfusion.com/wpf/surface-chart/getting-started) is a 3D visualization tool that maps three variables onto a continuous surface, making it ideal for analyzing multi-dimensional data. It helps uncover hidden patterns, trends, and anomalies in a visually intuitive way.
+A [Surface Chart](https://help.syncfusion.com/wpf/surface-chart/getting-started) is a 3D visualization tool that maps three variables onto a continuous surface, making it ideal for analyzing multi-dimensional data. It helps uncover hidden patterns, trends, and anomalies in a visually intuitive way. Surface charts are particularly useful for comparing variations across two independent dimensions while observing how a dependent variable changes. They provide a clear representation of peaks and valleys, making it easier to identify areas of high and low intensity. 
+
 
 ## Important Features of Surface Chart
 - **3D Mapping:** Visualize Year–Country–Consumption relationships in one view.
