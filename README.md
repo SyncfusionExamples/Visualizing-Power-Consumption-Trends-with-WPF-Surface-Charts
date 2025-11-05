@@ -1,4 +1,3 @@
-al per-capita energy consumption across countries and years.
 # Visualizing Power Consumption Trends with WPF Surface Charts
 
 ## Syncfusion Surface Chart Overview
@@ -32,7 +31,7 @@ If you encounter a **"path too long" exception** while building this example pro
 2. Rename the repository to a shorter name.
 3. Rebuild the project.
 
-For a step-by-step procedure, refer to the **Energy Analytics Interface blog**.
+For a step-by-step procedure, refer to the [**Energy Analytics Interface blog**]().
 
 
 
