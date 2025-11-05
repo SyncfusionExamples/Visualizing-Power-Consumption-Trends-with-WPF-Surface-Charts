@@ -38,7 +38,8 @@ Build an interactive Energy Analytics interface in WPF using [Syncfusion’s 3D 
 - Switch surface types to emphasize structure or magnitude
 - Use the legend to decode intensity at a glance
 
-![Energy Analytics interface]("https://github.com/user-attachments/assets/f94669dc-a790-4d60-b8c9-6ee2baae73f2")
+![Energy Analytics interface](https://github.com/user-attachments/assets/ea8ba50d-b582-415d-a593-252698d33123)
+
 
 ## Troubleshooting
 

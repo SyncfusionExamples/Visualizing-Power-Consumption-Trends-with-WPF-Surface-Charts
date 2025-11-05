@@ -9,15 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.SfChart.WPF" Version="31.1.21" />
-    <PackageReference Include="Syncfusion.Shared.WPF" Version="31.1.23" />
-    <PackageReference Include="syncfusion.ui.wpf.net" Version="31.1.17" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="*" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="*" />
+    <PackageReference Include="syncfusion.ui.wpf.net" Version="*" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\energy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\energyConsumption.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
