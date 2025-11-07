@@ -1,0 +1,223 @@
+<Window x:Class="SurfaceChart.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns:local="clr-namespace:SurfaceChart"
+        mc:Ignorable="d" WindowState="Maximized" Background="#0B1521">
+
+        <Grid Margin="10" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="8.5*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Blog Title / Header -->
+            <Border Grid.Row="0" Grid.ColumnSpan="2" Margin="10" Padding="5" CornerRadius="10" BorderBrush="#e3e2df" BorderThickness="2" Background="#0a1f53" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="9.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Images/renewableEnergy.png" Height="70" Width="70" Grid.Column="0"/>
+
+                    <StackPanel Margin="10" Grid.Column="1">
+                        <TextBlock Text="Visualizing Annual Energy Consumption per Person by Country" FontSize="26" FontWeight="Bold" Foreground="#E6F0FF"/>
+                        <TextBlock Text="A comparative analysis of annual energy consumption across nations, highlighting usage disparities and sustainability trends." Margin="0,4" Foreground="#9AB0CC" FontSize="18"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Surface Chart -->
+            <Border Grid.Row="1" Grid.Column="0" Margin="10,0,10,10" Padding="5" CornerRadius="10" BorderBrush="#e3e2df" BorderThickness="2" Background="#0a1f53" >
+
+                <syncfusion:SfSurfaceChart x:Name="Surface" Palette="Custom" 
+                                       Type="WireframeSurface"
+                                       EnableRotation="True"
+                                       ItemsSource="{Binding DataValues}" 
+                                       WireframeStroke="Black"
+                                       XBindingPath="Year"
+                                       YBindingPath="Consumption" Tilt="10" Rotate="50"
+                                       ZBindingPath="Country"  WireframeStrokeThickness="3"
+                                       RowSize="{Binding RowSize}"
+                                       ColumnSize="{Binding ColumnSize}"
+                                       HorizontalAlignment="Center">
+
+                    <syncfusion:SfSurfaceChart.DataContext>
+                        <local:ChartViewModel></local:ChartViewModel>
+                    </syncfusion:SfSurfaceChart.DataContext>
+
+                    <syncfusion:SfSurfaceChart.Resources>
+
+                        <Style TargetType="Line" x:Key="gridLineStyle">
+                            <Setter Property="StrokeThickness" Value="1"/>
+                            <Setter Property="Stroke" Value="#344566"/>
+                        </Style>
+
+                        <Style TargetType="Line" x:Key="lineStyle">
+                            <Setter Property="StrokeThickness" Value="2"/>
+                            <Setter Property="Stroke" Value="#344566"/>
+                        </Style>
+
+                        <Style TargetType="Label" x:Key="axisLabelStyle">
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                        </Style>
+
+                        <DataTemplate x:Key="labelTemplate">
+                            <TextBlock Text="{Binding LabelContent}" Foreground="#FFFFFF"/>
+                        </DataTemplate>
+
+                        <local:CountryIndexToNameConverter x:Key="CountryConverter"/>
+
+                        <DataTemplate x:Key="zLabelTemplate">
+                            <TextBlock Text="{Binding LabelContent, Converter={StaticResource CountryConverter}}" Foreground="#FFFFFF"/>
+                        </DataTemplate>
+
+                        <DataTemplate x:Key="headerTemplate1">
+                            <TextBlock Text="Year"  Foreground="#FFFFFF"/>
+                        </DataTemplate>
+
+                        <DataTemplate x:Key="headerTemplate2">
+                            <TextBlock Text="MWh per person"  Foreground="#FFFFFF"/>
+                        </DataTemplate>
+
+                        <DataTemplate x:Key="headerTemplate3">
+                            <TextBlock Text="Country"  Foreground="#FFFFFF"/>
+                        </DataTemplate>
+
+                    </syncfusion:SfSurfaceChart.Resources>
+
+                    <!--X axis-->
+                    <syncfusion:SfSurfaceChart.XAxis>
+                        <syncfusion:SurfaceAxis HeaderTemplate="{StaticResource headerTemplate1}"    
+                                            Interval="2 "
+                                            EdgeLabelsDrawingMode="Shift"
+                                            GridLineStroke="#344566"
+                                            LabelTemplate="{StaticResource labelTemplate}"
+                                            AxisLineStyle="{StaticResource lineStyle }">
+                        </syncfusion:SurfaceAxis>
+                    </syncfusion:SfSurfaceChart.XAxis>
+
+                    <!--Y axis-->
+                    <syncfusion:SfSurfaceChart.YAxis>
+                        <syncfusion:SurfaceAxis HeaderTemplate="{StaticResource headerTemplate2}"
+                                            GridLineStroke="#344566"
+                                            Minimum="0"
+                                            Maximum="120"
+                                            Interval="20"
+                                            LabelTemplate="{StaticResource labelTemplate}"
+                                            AxisLineStyle="{StaticResource lineStyle }">
+                        </syncfusion:SurfaceAxis>
+                    </syncfusion:SfSurfaceChart.YAxis>
+
+                    <!--Z axis-->
+                    <syncfusion:SfSurfaceChart.ZAxis>
+                        <syncfusion:SurfaceAxis HeaderTemplate="{StaticResource headerTemplate3}"
+                                            Minimum="1" Maximum="5" Interval="1"
+                                            GridLineStroke="#344566"
+                                            EdgeLabelsDrawingMode="Shift"
+                                            LabelTemplate="{StaticResource zLabelTemplate}"
+                                            AxisLineStyle="{StaticResource lineStyle }">
+                        </syncfusion:SurfaceAxis>
+                    </syncfusion:SfSurfaceChart.ZAxis>
+
+
+                    <syncfusion:SfSurfaceChart.ColorModel>
+                        <syncfusion:ChartColorModel>
+                            <syncfusion:ChartColorModel.CustomBrushes>
+                                <SolidColorBrush Color="#1E90FF"/>
+                                <SolidColorBrush Color="#32CD32"/>
+                                <SolidColorBrush Color="#FFD700"/>
+                                <SolidColorBrush Color="#FF8C00"/>
+                                <SolidColorBrush Color="#FF3B3B"/>
+                            </syncfusion:ChartColorModel.CustomBrushes>
+                        </syncfusion:ChartColorModel>
+                    </syncfusion:SfSurfaceChart.ColorModel>
+
+                </syncfusion:SfSurfaceChart>
+                
+            </Border>
+
+            <!-- Side Panel -->
+            <Grid Grid.Row="1" Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Border  Grid.Row="0"  Margin="10,0,10,10" Padding="5" CornerRadius="10" BorderBrush="#e3e2df" BorderThickness="2" Background="#0a1f53">
+
+                    <!-- Surface Type selector -->
+                    <StackPanel  Orientation="Vertical" Margin="10">
+
+                        <TextBlock Text="Surface Type" FontSize="25" FontWeight="Bold" Foreground="#E6F0FF" />
+                        <Separator  Background="#e3e2df" Height="1.5" Margin="0,10"/>
+
+                        <syncfusion:ComboBoxAdv x:Name="TypeCombo" Width="250" SelectedValuePath="Content" SelectionChanged="TypeCombo_SelectionChanged"
+                                            HorizontalContentAlignment="Center" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" >
+                            <syncfusion:ComboBoxItemAdv Content="WireframeSurface" />
+                            <syncfusion:ComboBoxItemAdv Content="Surface" />
+                        </syncfusion:ComboBoxAdv>
+
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="1" Margin="10,0,10,10" Padding="5" CornerRadius="10" BorderBrush="#e3e2df" BorderThickness="2" Background="#0a1f53">
+
+                    <StackPanel  Orientation="Vertical" Margin="10">
+                        <TextBlock Text="Energy Usage Scale" FontSize="25" FontWeight="Bold" Foreground="#E6F0FF" />
+                        <Separator  Background="#e3e2df" Height="1.5" Margin="0,10"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Rectangle Width="18" Height="18" Fill="#FF3B3B" RadiusX="3" RadiusY="3" Stroke="#e3e2df" StrokeThickness="1"/>
+                            <TextBlock Text="90.6  -  111.8" Margin="15,0,0,0" FontSize="18" Foreground="#E6F0FF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Rectangle Width="18" Height="18" Fill="#FF8C00" RadiusX="3" RadiusY="3" Stroke="#e3e2df" StrokeThickness="1"/>
+                            <TextBlock Text="69.5  -  90.6" Margin="15,0,0,0" FontSize="18" Foreground="#E6F0FF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Rectangle Width="18" Height="18" Fill="#FFD700" RadiusX="3" RadiusY="3" Stroke="#e3e2df" StrokeThickness="1"/>
+                            <TextBlock Text="48.3  -  69.5" Margin="15,0,0,0" FontSize="18" Foreground="#E6F0FF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Rectangle Width="18" Height="18" Fill="#32CD32" RadiusX="3" RadiusY="3" Stroke="#e3e2df" StrokeThickness="1"/>
+                            <TextBlock Text="27.1  -  48.3" Margin="15,0,0,0" FontSize="18" Foreground="#E6F0FF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Rectangle Width="18" Height="18" Fill="#1E90FF" RadiusX="3" RadiusY="3" Stroke="#e3e2df" StrokeThickness="1"/>
+                            <TextBlock Text="5.90  -  27.1" Margin="15,0,0,0" FontSize="18" Foreground="#E6F0FF" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="2" Margin="10,0,10,10" Padding="5" CornerRadius="10" BorderBrush="#e3e2df" BorderThickness="2" Background="#0a1f53">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/energyConsumption.png" Height="100" Width="100" />
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" >
+                            <TextBlock Text="Save Power" Grid.Row="0" FontSize="20" Foreground="#E6F0FF" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Save future"  Grid.Row="1" FontSize="20" Foreground="#E6F0FF" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+            </Grid>
+            
+        </Grid>
+</Window>
