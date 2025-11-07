@@ -22,7 +22,8 @@ Our interface focuses on delivering an interactive experience for exploring ener
 - **Dynamic data binding via MVVM** for seamless updates.
 - **Customizable visualization options:** Switch between solid and wireframe surfaces, apply color palettes, and configure axes for clarity.
 
-![Energy Analytics interface](https://github.com/user-attachments/assets/ea8ba50d-b582-415d-a593-252698d33123)
+![SurfaceChart (1)](https://github.com/user-attachments/assets/926c7987-8fab-48fc-8061-9f2de8461186)
+
 
 ## Troubleshooting
 ### Path Too Long Exception
