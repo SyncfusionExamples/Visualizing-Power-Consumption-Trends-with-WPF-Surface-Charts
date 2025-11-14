@@ -32,7 +32,7 @@ If you encounter a **"path too long" exception** while building this example pro
 2. Rename the repository to a shorter name.
 3. Rebuild the project.
 
-For a step-by-step procedure, refer to the [**Energy Analytics Interface blog**]().
+For a step-by-step procedure, refer to the [**Energy Analytics Interface blog**](https://www.syncfusion.com/blogs/post/wpf-surface-chart-energy-analytics-dashboard).
 
 
 
